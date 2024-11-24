@@ -1,0 +1,2 @@
+[2024-11-24 08:27:48,251] multiqc.core.file_search                           [INFO   ]  Search path: /content
+[2024-11-24 08:27:50,003] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 6 reports

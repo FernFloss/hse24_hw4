@@ -1,5 +1,5 @@
-# hse23_hw4
-### Варфоломеева Анастасия Андреевна БПМ213
+# hse24_hw4
+### Садковская Маргарита Алексеевна
 
 [Первая часть гугл коллаб](https://colab.research.google.com/drive/1gAaUKGFxsyrJ3eGj2fRzzaPBw2W8hLkK?usp=sharing)\
 [Вторая часть гугл коллаб](https://colab.research.google.com/drive/1JdXfm1LlRAJmDTcI97GUdiwJGVjhwvw8?usp=sharing)
@@ -9,17 +9,36 @@
 
 ## Проверка качества чтений по статистике из multiQC
 
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/general_stats_table.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/2.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/3.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/4.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/5.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/6.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/7.png)
+![image](./img/general_stats_table.png)
+
+Уровень дупликации варьируется от 52.6% до 60.2%. В процессе перепрограммирования происходят значительные изменения экспрессии генов. Перепрограммированные образцы могут демонстрировать высокую экспрессию ключевых регуляторных генов (например, факторов транскрипции, связанных с плурипотентностью), что приводит к увеличению количества дублированных последовательностей. Аналогично, контрольные образцы могут иметь свои характерные высокоэкспрессируемые гены
+
+![image](./img/fastqc_sequence_counts_plot.png)
+![image](./img/fastqc_per_base_sequence_quality_plot.png)
+![image](./img/fastqc_per_sequence_quality_scores_plot.png)
+
+Большинство прочтений кластеризуется около 37, что показывает хорошое качество чтений
+
+![image](./img/fastqc_per_sequence_gc_content_plot.png)
+
+Можно, заметить, что сильных отклонений на графике не видно
+
+![image](./img/fastqc_per_base_n_content_plot.png)
+![image](./img/fastqc_sequence_duplication_levels_plot.png)
+
+Большая часть библиотеки (до 40%) состоит из уникальных последовательностей (уровень дупликации 1). Дальше уровень дупликации уменьшается, что является нормальным для большинства данных секвенирования.
 
 
 ## Общая статистика
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/8.png)
+![image](https://github.com/switerElly/hse23_hw4/blob/main/img/fastqc-status-check-heatmap.png)
+
+* Sequence Duplication Levels
+  
+Все образцы отмечены как проблемные (красный цвет), что указывает на высокий уровень дублированных последовательностей. Это ожидаемо для RNA-seq данных, особенно при высокоэкспрессируемых генах
+
+* Per Base Sequence Content
+  
+Во всех образцах есть проблемы (красный цвет), что может указывать на смещение содержания нуклеотидов, особенно в начале чтений.
 
 
 ## Таблица с информацией по образцам  
@@ -32,18 +51,20 @@
 | **SRR3414630** | перепрограммированный | 15244711  | 15077019, 98.90% | 13320505, 87.8% | 11583775 |
 | **SRR3414631** | перепрограммированный | 24244069  | 23965262, 98.85% | 21159606, 87.5% | 18613501 |
 
-# Часть 2. Анализ с помощью DESeq2
+# Часть 2. Анализ дифференциальной экспрессии  с помощью DESeq2
 
 ## MA-plot, показывающий Log2FC для генов  
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/10.png)
+![image](./img/2.png)
 
 ## Тепловая карта зависимости экспрессии генов контрольных и репрограммированных образцов
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/9.png)
+![image](./img/1.png)
+
+Тут друг на друга реплики похожи сильнее, чем реплики с другим условием
 
 ## Тепловая карта 20 наиболее дифференциально экспрессированных генов
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/11.png)
+![image](./img/3.png)
 
-## Графики "Normalized counts" для генов, значимо поменявших свою экспрессию (видно, что точки у перепрограммированых и контрольных образцах сильно различаются)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/12.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/13.png)
-![image](https://github.com/switerElly/hse23_hw4/blob/main/img/14.png)
+## Графики "Normalized counts" для генов, значимо поменявших свою экспрессию (видно, что точки у перепрограммированых и контрольных образцах имеют сильное отличие)
+![image](./img/4.png)
+![image](./img/5.png)
+![image](./img/6.png)
